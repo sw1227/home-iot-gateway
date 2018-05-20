@@ -6,13 +6,16 @@ var exec = require('child_process').exec;
 var turnLight = function(state) {
     switch (state) {
     case "ON":
-	var command = "python ../ir_remocon/irrp.py -p -g17 -f ../ir_remocon/codes light:on";
+	console.log("Light turning ON...");
+	var command = "python /home/pi/home-iot/ir_remocon/irrp.py -p -g17 -f /home/pi/home-iot/ir_remocon/codes light:on";
 	break;
     case "OFF":
-	var command = "python ../ir_remocon/irrp.py -p -g17 -f ../ir_remocon/codes light:off";
+	console.log("Light turning OFF...");
+	var command = "python /home/pi/home-iot/ir_remocon/irrp.py -p -g17 -f /home/pi/home-iot/ir_remocon/codes light:off";
 	break;
     case "MAX":
-	var command = "python ../ir_remocon/irrp.py -p -g17 -f ../ir_remocon/codes light:full";
+	console.log("Light turning ON (MAX)...");
+	var command = "python /home/pi/home-iot/ir_remocon/irrp.py -p -g17 -f /home/pi/home-iot/ir_remocon/codes light:full";
 	break;
     }
     exec(command,
