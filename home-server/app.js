@@ -3,12 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var exec = require('child_process').exec;
 
 var indexRouter = require('./routes/index');
 var lightRouter = require('./routes/light');
 var desktopRouter = require('./routes/desktop');
 
 var app = express();
+
+// 毎日AM3:00にRaspberry Piを再起動
+var CronJob = require('cron').CronJob;
+new CronJob('00 00 03 * * *', function() {
+    exec("sudo reboot",
+	 function(err, stdout, stderr) {
+	     console.log('Reboot!');
+	 });
+}, null, true, 'Asia/Tokyo');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
